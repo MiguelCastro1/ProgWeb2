@@ -1,0 +1,30 @@
+{
+  "name": "progweb2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx nodemon -r esm src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MiguelCastro1/ProgWeb2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MiguelCastro1/ProgWeb2/issues"
+  },
+  "homepage": "https://github.com/MiguelCastro1/ProgWeb2#readme",
+  "devDependencies": {
+    "esm": "^3.2.25",
+    "nodemon": "^2.0.16"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "uuid": "^8.3.2"
+  }
+}

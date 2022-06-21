@@ -4,7 +4,7 @@ import router from "./routes/index";
 //dotenv.config();
 const app = express();
 
-const PORT = process.env.PORT || 3030;
+const PORT = process.env.PORT || 3333;
 
 app.use(express.json());
 app.use(router)
@@ -16,3 +16,4 @@ app.use((req,res) => {
 app.listen(PORT, () => console.log(`Escutando na porta ${PORT}`));
 
 //CREATE USER 'skiefree'@'localhost' IDENTIFIED BY  'Senha@123456';
+//docker compose up

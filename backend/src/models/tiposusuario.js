@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     rotulo: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'TiposUsuario',
+    modelName: 'TipoUsuario',
   });
   return TipoUsuario;
 };

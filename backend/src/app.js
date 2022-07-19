@@ -4,7 +4,7 @@ import cookieParser from "cookie-parser";
 import {v4 as uuidv4} from 'uuid';
 import session from "express-session"
 
-//require('dotenv').config(path: `${__dirname}/../../.env`);
+require('dotenv').config({path: `${__dirname}/../../.env`});
 
 const app = express();
 
@@ -14,6 +14,7 @@ app.use(express.json());
 
 app.use(cookieParser());
 
+/*
 app.use((req,res,next) => {
     if(!("nome" in req.cookies))
         res.cookie('nome', 'valor')
@@ -24,6 +25,7 @@ app.get('/apaga_cookie', function(req, res){
     res.clearCookie('nome');
     res.send('cookie apagado');
     });
+*/
 
 app.use(session({
     genid: (req) => {
@@ -35,11 +37,12 @@ app.use(session({
     })
 );
 
+/*
 app.use((req, res, next) => {
     res.locals.isLogged = 'uid' in req.session;
     next();
 });
-
+*/
 app.use(router);
 
 app.use((req,res) => {

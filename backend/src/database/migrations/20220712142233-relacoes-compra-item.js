@@ -29,11 +29,11 @@ module.exports = {
 
   async down (queryInterface, Sequelize) {
     await queryInterface.removeConstraint(
-        'Produtos', 
+        'CompraItems', 
         'produtoFk'
     );
     await queryInterface.removeConstraint(
-        'Commpras', 
+        'CompraItems', 
         'compraFk'
     );
   }

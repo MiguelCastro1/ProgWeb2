@@ -7,7 +7,7 @@ module.exports = {
       type: 'foreign key',
       name: 'tipoUsuarioFk',
       references: {
-        table: 'TipoUsuarios',
+        table: 'TiposUsuarios',
         field: 'id'
       },
       onDelete: 'restrict',

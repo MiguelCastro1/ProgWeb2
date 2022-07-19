@@ -2,9 +2,11 @@ const models = require('../models/index');
 const Sequelize = require('sequelize');
 const Produto = models.Produto;
 const Op = Sequelize.Op;
-import {v4 as uuidv4} from 'uuid';
 
 const index = async(req,res) => {
+    //const page = req.query.page ? req.query.page: 1;
+    //const offset = req.query.offset ? req.query.offset: 0;
+
     const produtos = await Produto.findAll({});
     res.status(200).json(produtos);
 };
@@ -20,8 +22,8 @@ const create = async(req,res) => {
             message: 'Produto criado com sucesso!'
         });
     }catch(e){
-        console.log(e.errors)
-        res.status(500).json({error: e});
+        console.log(e)
+        res.status(500).send    ({error: e});
     }
 };
 
@@ -32,45 +34,41 @@ const read = async(req,res) => {
         if(produto){
             res.status(200).json({produto});
         }else{
-            res.status(204).json();
+            throw new Error('Produto não encontrado!');
         }
     }catch(e){
-        console.log(e.errors);
-        res.status(500).json({error: e});
+        console.log(e);
+        res.status(500).send({error: e});
     }
 };
 
 const update = async(req,res) => {
     const produto = await Produto.findOne({where : {id: req.params.id}});
-    if(produto){
-        try{
-            const produto_update = await Produto.update({
-                ...req.body
-            }, { where : {id: req.params.id}});
-            
-            res.status(200).json({produto_update});
-        }catch(e){
-            console.log(e.errors);
-            res.status(500).json({error: e});
-        }
-    }else{
-        res.status(204).json();
+    try{
+        if(!produto)
+            throw new Error('Produto não encontrado!');
+       
+        const produto_update = await Produto.update({...req.body}, { where : {id: req.params.id}});
+        res.status(200).json({produto_update});
+    }catch(e){
+        console.log(e);
+        res.status(500).json({error: e});
     }
 };
 
 const remove = async(req,res) => {
    const {id} = req.params;
    const produto = await Produto.findOne({where : {id: req.params.id}});
-   if(produto){
-        try{
-                await Produto.destroy({where: {id: id}});
-                res.status(200).json({message:'Produto removido com sucesso!'});  
-        }catch(e){
-            console.log(e);
-            res.status(500).json({error: e});
-        }
-    }else{
-        res.status(204).json();
+    try{
+        if(!produto)
+            throw new Error('Produto não encontrado!');
+
+        await Produto.destroy({where: {id: id}});
+        res.status(200).json({message:'Produto removido com sucesso!'});  
+
+    }catch(e){
+        console.log(e);
+        res.status(500).json({error: e});
     }
 };
 

@@ -3,15 +3,18 @@ import router from "./routes/index";
 import cookieParser from "cookie-parser";
 import {v4 as uuidv4} from 'uuid';
 import session from "express-session"
+import swaggerUi from "swagger-ui-express";
+import swaggerDocument from "./swagger.json";
+import cors from "cors";
 
 require('dotenv').config({path: `${__dirname}/../../.env`});
 
 const app = express();
 
-const PORT = process.env.PORT || 3333;
+const PORT = process.env.PORT_BACK|| 3333;
 
 app.use(express.json());
-
+app.use(cors());
 app.use(cookieParser());
 
 /*
@@ -44,7 +47,7 @@ app.use((req, res, next) => {
 });
 */
 app.use(router);
-
+app.use('/api', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use((req,res) => {
     res.status(200).send('Hello There');
 });

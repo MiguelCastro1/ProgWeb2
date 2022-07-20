@@ -7,7 +7,6 @@ const bcrypt = require('bcryptjs');
 const index = async(req,res) => {
     //const page = req.query.page ? 1: 2;
     //const offset
-    console.log('insasdasd')
     const usuarios = await Usuario.findAll({});
     res.status(200).json(usuarios);
 };

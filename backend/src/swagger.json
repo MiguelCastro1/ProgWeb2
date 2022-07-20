@@ -383,7 +383,7 @@
             }
         }
     },
-    "componets": {
+    "components": {
         "schemas": {
             "Produto": {
                 "type": "object",

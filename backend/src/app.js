@@ -6,6 +6,7 @@ import session from "express-session"
 import swaggerUi from "swagger-ui-express";
 import swaggerDocument from "./swagger.json";
 import cors from "cors";
+import path from "path";
 
 require('dotenv').config({path: `${__dirname}/../../.env`});
 
@@ -29,6 +30,8 @@ app.get('/apaga_cookie', function(req, res){
     res.send('cookie apagado');
     });
 */
+
+app.use("/files", express.static(path.join(__dirname, "..", "public", "uploads")));
 
 app.use(session({
     genid: (req) => {

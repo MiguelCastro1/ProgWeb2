@@ -13,10 +13,23 @@ const index = async(req,res) => {
 
 const create = async(req,res) => {
     try{
-        let produto = await Produto.create({
-            //id: uuidv4(),
-            ...req.body
-        });
+        if(req.file){
+            const {originalname: file, filename: path_file} = req.file;
+            const produto = await Produto.create({
+                ...req.body,
+                 file, 
+                 path_file
+            });
+        }else{
+            const file = "padrao";
+            const path_file = "padrao.png";
+            let produto = await Produto.create({
+                //id: uuidv4(),
+                ...req.body
+              
+            });
+        }
+       
         res.status(201).json({
             produto,
             message: 'Produto criado com sucesso!'
@@ -48,7 +61,16 @@ const update = async(req,res) => {
         if(!produto)
             throw new Error('Produto não encontrado!');
        
-        const produto_update = await Produto.update({...req.body}, { where : {id: req.params.id}});
+        if(req.file){
+            const {originalname: file, filename: path_file} = req.file;
+            const produto = await Produto.update({
+                ...req.body,
+                file, 
+                path_file
+            },{ where : {id: req.params.id}});
+        }else{
+            const produto_update = await Produto.update({...req.body}, { where : {id: req.params.id}});
+        }
         res.status(200).json({produto_update});
     }catch(e){
         console.log(e);

@@ -36,7 +36,7 @@ const login = async (rqe,res) =>{
         if(!isMatch){
             throw new Error('Email e/ou Senha incorreta');
         }
-
+        
         req.session.uid = usuario.id;
         res.status(200).send({message: "Usuario autenticado"})
     }catch(e){

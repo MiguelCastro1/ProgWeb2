@@ -20,20 +20,26 @@ const create = async(req,res) => {
                  file, 
                  path_file
             });
+
+            res.status(201).json({
+                produto,
+                message: 'Produto criado com sucesso!'
+            });
         }else{
+            console.log('create');
             const file = "padrao";
             const path_file = "padrao.png";
-            let produto = await Produto.create({
+            const produto = await Produto.create({
                 //id: uuidv4(),
                 ...req.body
-              
+            });
+
+            res.status(201).json({
+                produto,
+                message: 'Produto criado com sucesso!'
             });
         }
-       
-        res.status(201).json({
-            produto,
-            message: 'Produto criado com sucesso!'
-        });
+        
     }catch(e){
         console.log(e)
         res.status(500).send    ({error: e});
@@ -71,7 +77,7 @@ const update = async(req,res) => {
         }else{
             const produto_update = await Produto.update({...req.body}, { where : {id: req.params.id}});
         }
-        res.status(200).json({produto_update});
+        res.status(200).json({message:'Produto atualizado com sucesso!'});
     }catch(e){
         console.log(e);
         res.status(500).json({error: e});

@@ -18,7 +18,7 @@ const create = async(req,res) => {
         if(usuario)
             throw new Error('Usuario ja existe');
         
-        bcrypt.genSalt(process.env.BCRYPTJS_ROUNDS ? process.env.BCRYPTJS_ROUNDS : 8, (err,salt) => {
+        bcrypt.genSalt(8, (err,salt) => {
             bcrypt.hash(req.body.senha, salt, async (err,hash) => {
                 await Usuario.create({
                     nome: req.body.nome,

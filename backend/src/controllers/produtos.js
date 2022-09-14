@@ -91,8 +91,8 @@ const remove = async(req,res) => {
         if(!produto)
             throw new Error('Produto não encontrado!');
 
-        const produto = await Produto.destroy({where: {id: id}});
-        res.status(200).json({produto,message:'Produto removido com sucesso!'});  
+        const produto_apagado = await Produto.destroy({where: {id: id}});
+        res.status(200).json({produto_apagado,message:'Produto removido com sucesso!'});  
 
     }catch(e){
         console.log(e);

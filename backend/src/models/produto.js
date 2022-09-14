@@ -28,6 +28,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DECIMAL,
       allowNull: false,
     },
+    descricao: {
+      type: DataTypes.STRING,
+    },
     estoque: {
       type: DataTypes.INTEGER,
       allowNull: false,

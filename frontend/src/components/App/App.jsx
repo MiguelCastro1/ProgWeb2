@@ -1,6 +1,5 @@
 import './App.css';
 import Rotas from '../routes/routes';
-import Header from '../Header/Header';
 
 function App() {
 

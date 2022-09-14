@@ -1,8 +1,14 @@
 FROM node:16-alpine
 
+RUN mkdir /usr/app
+
 WORKDIR /usr/app
 
-RUN npm install -g nodemon
+COPY package*.json ./
+
+RUN npm install 
+
+COPY . .
 
 EXPOSE 3333
 

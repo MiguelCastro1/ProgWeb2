@@ -52,7 +52,7 @@ app.use((req, res, next) => {
 app.use(router);
 app.use('/api', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use((req,res) => {
-    res.status(200).send('Hello There');
+    res.status(200).send('Hello There 2');
 });
 
 app.listen(PORT, () => console.log(`Escutando na porta ${PORT}`));

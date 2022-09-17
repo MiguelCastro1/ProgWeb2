@@ -3,6 +3,7 @@ import path from "path";
 import crypto from "crypto";
 
 export default {
+
     dest: path.resolve(__dirname, "..", "..", "public", "uploads"),
     storage: multer.diskStorage({
         destination: (req, file, cb) => {

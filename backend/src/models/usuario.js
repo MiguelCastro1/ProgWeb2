@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         len: {
-          Args: [3,50],
+          args: [3,50],
           msg: 'O nome deve ter entre 3 e 50 caracteres'
         }
       }
@@ -33,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         isEmail: {
-          Args: true,
+          args: true,
           msg: 'O email deve ser válido'
         }
       }

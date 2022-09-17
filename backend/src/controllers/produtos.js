@@ -14,6 +14,7 @@ const index = async(req,res) => {
 const create = async(req,res) => {
     try{
         if(req.file){
+            console.log('filees')
             const {originalname: file, filename: path_file} = req.file;
             const produto = await Produto.create({
                 ...req.body,
@@ -26,12 +27,14 @@ const create = async(req,res) => {
                 message: 'Produto criado com sucesso!'
             });
         }else{
-            console.log('create');
+            console.log('padrao')
             const file = "padrao";
             const path_file = "padrao.png";
             const produto = await Produto.create({
                 //id: uuidv4(),
-                ...req.body
+                ...req.body,
+                file,
+                path_file
             });
 
             res.status(201).json({

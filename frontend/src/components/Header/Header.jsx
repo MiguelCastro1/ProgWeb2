@@ -13,15 +13,18 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import {useNavigate} from 'react-router-dom';
+import { useSelector } from  'react-redux'
 
 
 const pages = [{'name': 'Produtos', 'path': '/produtos'}, {'name': 'Sobre', 'path': '/sobre'}];
-const settings = [{'name': 'Perfil', 'path': '/perfil'}, {'name': 'Logout', 'path': '/login'}];
+const settings = [{'name': 'Perfil', 'path': '/perfil'}, {'name': 'Logout', 'path': '/logout'}, {'name': 'Login', 'path': '/login'}];
 
 const ResponsiveAppBar = () => {
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const user = useSelector(state => state.user)
+
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -96,11 +99,12 @@ const ResponsiveAppBar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting.name} onClick={console.log(1)}>
+  
+             { settings.map((setting) => (
+                <MenuItem key={setting.name} onClick={() => setting.path()}>
                   <Typography textAlign="center">{setting.name}</Typography>
                 </MenuItem>
-              ))}
+            ))}
             </Menu>
           </Box>
         </Toolbar>
@@ -108,4 +112,5 @@ const ResponsiveAppBar = () => {
     </AppBar>
   );
 };
+
 export default ResponsiveAppBar;

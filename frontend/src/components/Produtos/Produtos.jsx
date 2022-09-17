@@ -3,13 +3,15 @@ import { Link } from 'react-router-dom';
 import api from '../../services/axios';
 import { TextField, Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
- import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from  'react-redux'
 
 const Produtos = () => {
     const [produtos, setProdutos] = useState([]);
     const [search, setSearch] = useState('');
     const [searchProdutcs, setSearchProdutcs] = useState([]);
     const navigate = useNavigate();
+    const user = useSelector(state => state.user)
 
     useEffect(() => {
         try{
@@ -35,9 +37,11 @@ const Produtos = () => {
         <div style={{margin:'10px'}}>
             <div style={{'margin':'10px'}}>
                 <h2> Listagem de Produtos
-                <div className='float-end'>
-                    <Button  size='large' variant="contained" onClick={()=> navigate('/produto/add')} startIcon={<AddIcon />}></Button>   
-                </div>
+                {user.tipoUsuario === 'visitante' && (
+                    <div className='float-end'>
+                        <Button  size='large' variant="contained" onClick={()=> navigate('/produto/add')} startIcon={<AddIcon />}></Button>   
+                    </div>
+                )}
                 </h2>
             </div>  
 

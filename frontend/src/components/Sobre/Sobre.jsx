@@ -1,3 +1,4 @@
+import sobre from '../../../public/sobre.webp'
 
 const Sobre = () => {
     return (
@@ -5,9 +6,9 @@ const Sobre = () => {
       
         <h1>Sobre</h1>
         <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-            quidem, quisquam quidem.
+            Loja Virtual que vende coisas
         </p>
+        <img src={sobre} width={1000} height={500} />
         </div>
     );
 }

@@ -26,8 +26,10 @@ const Login = () => {
                 
                 if(response.status == 404)
                     setErro(true)
-                else if(response.status == 200)
+                else if(response.status == 200){
                     dispatch(login(response))
+                    navigate('/')
+                }
             })
             .catch(error => {
                 console.log(error);
